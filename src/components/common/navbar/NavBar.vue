@@ -1,0 +1,34 @@
+<template>
+  <div class="nav-bar">
+    <div class="left">
+      <slot name="left"></slot>
+    </div>
+    <div class="content">
+      <slot name="content"></slot>
+    </div>
+    <div class="right">
+      <slot name="right"></slot>
+    </div>
+  </div>
+</template>
+
+<script type="text/ecmascript-6">
+export default {
+
+}
+</script>
+
+<style scoped>
+  .nav-bar{
+    display: flex;
+    line-height: 44px;
+    text-align: center;
+    box-shadow: 0 1px 1px rgba(100, 100, 100, 0.1);
+  }
+  .left, .right{
+    width: 60px;
+  }
+  .content{
+    flex: 1;
+  }
+</style>

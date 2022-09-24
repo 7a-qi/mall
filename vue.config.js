@@ -9,7 +9,7 @@ module.exports = {
         'assets':'@/assets',
         'common':'@/common',
         'components':'@/components',
-        'networks':'@/networks',
+        'network':'@/network',
         'views':'@/views',
       }
     }

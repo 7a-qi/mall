@@ -34,6 +34,7 @@
     </scroll>
     <detail-bottom @addCart="addCart"></detail-bottom>
     <back-top @click.native="backClick" v-show="isShowBackTop"></back-top>
+    <toast :message="message" :show="show"></toast>
   </div>
 </template>
 <script>
@@ -48,7 +49,7 @@ import DetailBottom from "./childComps/DetailBottom";
 
 import Scroll from "components/common/scroll/Scroll";
 import GoodsList from "components/content/goods/GoodsList";
-
+import Toast from "components/common/toast/Toast";
 import {
   getdetail,
   Goods,
@@ -74,6 +75,8 @@ export default {
       navbar: null,
       positionY: 0,
       currentIndex: 0,
+      message:'',
+      show: false
     };
   },
   components: {
@@ -87,6 +90,7 @@ export default {
     DetailBottom,
     GoodsList,
     Scroll,
+    Toast
   },
   mixins: [itemListMixin,backTopMixin],
   created() {
@@ -154,7 +158,14 @@ export default {
       unite.lowNowPrice = this.goods.lowNowPrice;
       unite.topImages = this.topImages[0];
       unite.id = this.id;
-      this.$store.dispatch('addCart', unite)
+      this.$store.dispatch('addCart', unite).then((res) => {
+        this.show = true;
+        this.message = res;
+        setTimeout(() =>{
+          this.show = false;
+          this.message = '';
+        },1000)
+      })
     }
   },
 };
